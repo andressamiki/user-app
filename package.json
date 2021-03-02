@@ -9,13 +9,13 @@
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0",
+    "istanbul": "^0.4.5",
     "jasmine": "^3.6.4",
     "node-sass": "^5.0.0"
   },
   "scripts": {
-    "test": "jasmine",
-    "gulp": "node ./node_modules/.bin/gulp",
-    "jasmine": "node ./node_modules/.bin/jasmine init"
+    "test": "istanbul cover jasmine",
+    "gulp": "node ./node_modules/.bin/gulp"
   },
   "repository": {
     "type": "git",

@@ -33,6 +33,10 @@ describe('Validate', () => {
         const cpf = component.validateCpf('413.178.309.98');
         expect(cpf).toBeFalsy();
     })
+    it('should validade cpf.lenght invalid', () => {
+        const cpf = component.validateCpf('413.178.309.9');
+        expect(cpf).toBeFalsy();
+    })
     it('should validade cpf valid', () => {
         const cpf = component.validateCpf('413.478.308.98');
         expect(cpf).toBeTruthy();
