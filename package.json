@@ -9,11 +9,13 @@
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0",
+    "jasmine": "^3.6.4",
     "node-sass": "^5.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp": "node ./node_modules/.bin/gulp"
+    "test": "jasmine",
+    "gulp": "node ./node_modules/.bin/gulp",
+    "jasmine": "node ./node_modules/.bin/jasmine init"
   },
   "repository": {
     "type": "git",
