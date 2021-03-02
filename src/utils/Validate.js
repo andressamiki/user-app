@@ -1,7 +1,9 @@
 class Validate{
 
-    validateCpf(cpf){
-        cpf = cpf.replace(/\D/g, '');
+    constructor(){}
+    
+    validateCpf(value){
+        const cpf = value.replace(/\D/g, '');
         if(cpf.toString().length != 11 || /^(\d)\1{10}$/.test(cpf)) {
             return false;
         }

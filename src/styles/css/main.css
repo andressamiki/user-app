@@ -43,7 +43,7 @@ table {
   box-sizing: border-box; }
 
 html {
-  font: 400 1rem sans-serif; }
+  font: 400 1rem 'Ubuntu',sans-serif; }
 
 body {
   background: #f6f6f6;
@@ -55,8 +55,20 @@ body {
   padding: 2.5rem 2rem;
   background: white; }
 
+.container-table {
+  max-width: 960px; }
+
+.btn-group {
+  display: flex;
+  justify-content: flex-end; }
+  .btn-group .btn-primary {
+    max-width: 200px;
+    text-align: center; }
+
 h1 {
-  font-size: 1.5rem; }
+  font: 500 1.8rem 'Ubuntu', sans-serif;
+  text-align: center;
+  padding: 3rem; }
 
 button {
   cursor: pointer;
@@ -65,7 +77,8 @@ button {
   border: 0;
   border-radius: 1.8rem;
   padding: 0.9rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
   margin-top: 2rem; }
 
 .btn-primary {
@@ -98,13 +111,27 @@ button {
   color: #939393; }
 
 .form-control input:valid {
-  font-size: 1.2rem; }
+  font-size: 1.1rem; }
 
 .form-control input:invalid:not(:focus) + label {
   color: #939393;
   position: absolute;
   bottom: 5px;
-  font-size: 1.2rem; }
+  font-size: 1.1rem; }
+
+table {
+  width: 100%; }
+  table thead {
+    font-weight: 500; }
+    table thead th {
+      border-bottom: solid 1px #333333; }
+  table > tbody {
+    text-align: center;
+    font-size: 0.8rem; }
+    table > tbody > tr:nth-of-type(odd) {
+      background: #f6f6f6; }
+  table td, table th {
+    padding: 1rem; }
 
 @media (max-width: 1080px) {
   html {

@@ -8,7 +8,7 @@
 }
 
 html{
-  font: 400 1rem sans-serif;
+  font: 400 1rem 'Ubuntu',sans-serif;
 }
 
 body{
@@ -23,8 +23,23 @@ body{
   background: white;
 }
 
+.container-table{
+  max-width: 960px;
+}
+
+.btn-group{
+  display: flex;
+  justify-content: flex-end;
+  .btn-primary{
+    max-width: 200px;
+    text-align: center;
+  }
+}
+
 h1{
-  font-size: 1.5rem;
+  font: 500 1.8rem 'Ubuntu', sans-serif;
+  text-align: center;
+  padding: 3rem;
 }
 
 button {
@@ -34,7 +49,8 @@ button {
   border: 0;
   border-radius: 1.8rem;
   padding: 0.9rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 500;
   margin-top: 2rem;
 }
 
@@ -76,7 +92,7 @@ button {
   }
 
   input:valid {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   input:invalid:not(:focus) {
@@ -84,10 +100,30 @@ button {
     color: $dark-gray;
     position: absolute;
     bottom: 5px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   }
   
+}
+
+table {
+  width: 100%;
+  thead{
+    font-weight: 500;
+    th{
+      border-bottom: solid 1px $brand;
+    }
+  }
+  &>tbody{
+    text-align: center;
+    font-size: 0.8rem;
+    &>tr:nth-of-type(odd) {
+      background: $light-gray;
+    }
+  }
+  td,th{
+    padding: 1rem;
+  }
 }
 
 @media (max-width: 1080px) {
