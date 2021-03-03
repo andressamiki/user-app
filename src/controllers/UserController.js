@@ -1,7 +1,7 @@
 import User from '../models/User.js';
 import UserList from '../models/UserList.js';
 import Validate from '../utils/Validate.js';
-import UserService from '../services/UserService.js';
+
 
 class UserController {
 
@@ -21,16 +21,7 @@ class UserController {
             input.phone,
             input.email
         );
-
-        this._insertUser();
-
-        console.log(this._user.toJSON());
-    }
-
-    _insertUser() {
-        if (this._list.users().length > 0) {
-            this._list.add(this._user);
-        }
+        this._list.pushUser(this._user);
     }
 
     _validateForm() {
@@ -49,22 +40,9 @@ class UserController {
         return true;
     }
 
-    listUser(){
-        this._getList();
+    listUser() {
+        this._list.localStorage();
         return this._list;
-    }
-
-    _getUserListLocalStorage(){
-        if(localStorage.getItem('userList')){
-            this._list = localStorage.getItem('userList');
-        }else{
-            const service = new UserService();
-            service.fetchUserList().then(data => localStorage.setItem('userList', JSON.stringify(data)));
-        }
-    }
-
-    removeUser() {
-
     }
 
     editUser() {

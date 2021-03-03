@@ -22,9 +22,9 @@ class User {
         return this._email;
     }
 
-    toJSON() {
+    plainObject() {
         const {name, cpf, phone, email} = this;
-        return JSON.stringify({name, cpf, phone, email});
+        return {name, cpf, phone, email};
     }
 }
 

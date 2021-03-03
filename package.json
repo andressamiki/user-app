@@ -16,7 +16,8 @@
   },
   "scripts": {
     "test": "babel-node spec/run.js",
-    "gulp": "node ./node_modules/.bin/gulp"
+    "gulp-unix": "node ./node_modules/.bin/gulp",
+    "gulp-windows": "./node_modules/.bin/gulp"
   },
   "repository": {
     "type": "git",

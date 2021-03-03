@@ -1,6 +1,6 @@
 class UserService {
 
-    async fetchUserList() {
+    async fetchList() {
         const response = await fetch('https://private-21e8de-rafaellucio.apiary-mock.com/users');
         const data = await response.json();
         return data;
