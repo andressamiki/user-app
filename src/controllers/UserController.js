@@ -1,32 +1,36 @@
 import User from '../models/User.js';
+import UserList from '../models/UserList.js';
 import Validate from '../utils/Validate.js';
+import UserService from '../services/UserService.js';
 
 class UserController {
 
     constructor() {
-        /*this._form = {
-            name: document.getElementById('name').value,
-            cpf: document.getElementById('cpf').value,
-            phone: document.getElementById('phone').value,
-            email: document.getElementById('email').value
-        };*/
         this._user;
-        this._list;
+        this._list = new UserList();
     }
 
-    addUser() {
+    createUser(input) {
         if (!this._validateForm) {
             console.log('erro na validação')
             return;
         }
         this._user = new User(
-            this._form.name,
-            this._form.cpf,
-            this._form.phone,
-            this._form.email
+            input.name,
+            input.cpf,
+            input.phone,
+            input.email
         );
 
+        this._insertUser();
+
         console.log(this._user.toJSON());
+    }
+
+    _insertUser() {
+        if (this._list.users().length > 0) {
+            this._list.add(this._user);
+        }
     }
 
     _validateForm() {
@@ -50,17 +54,21 @@ class UserController {
         return this._list;
     }
 
-    _getList(){
+    _getUserListLocalStorage(){
         if(localStorage.getItem('userList')){
             this._list = localStorage.getItem('userList');
         }else{
-            fetch('https://private-21e8de-rafaellucio.apiary-mock.com/users')
-                .then(response => response.json())
-                .then(data => {
-                    this._list = data;
-                    localStorage.setItem('userList', data);
-                });
+            const service = new UserService();
+            service.fetchUserList().then(data => localStorage.setItem('userList', JSON.stringify(data)));
         }
+    }
+
+    removeUser() {
+
+    }
+
+    editUser() {
+
     }
 }
 

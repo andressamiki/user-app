@@ -10,6 +10,12 @@ if(route == '/user-list.html'){
     const submit = document.querySelector('#form-user');
     submit.addEventListener('submit', (event) => {
         event.preventDefault();
-        userController.addUser();
+        form = {
+            name: document.getElementById('name').value,
+            cpf: document.getElementById('cpf').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value
+        }
+        userController.createUser(form);
     });
 }

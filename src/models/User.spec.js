@@ -1,4 +1,4 @@
-const User = require("./User")
+import User from './User.js';
 
 describe('User', () => {
     let component = new User;
