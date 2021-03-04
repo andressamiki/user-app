@@ -11,7 +11,6 @@ class UserController {
     }
 
     createUser(input) {
-        console.log(this._validateForm())
         if (!this._validateForm()) {
             console.log('erro na validação')
             return false;
@@ -24,18 +23,10 @@ class UserController {
             input.email
         );
 
-        this._getUsersFromStorage();
+        this._list = new UserList()
         this._list.pushUser(this._user);
     }
 
-    _getUsersFromStorage() {
-        const users = JSON.parse(localStorage.getItem('userList'));
-        if (!this._list && users && users.length > 0) {
-            this._list = new UserList(users);
-        } else {
-            this._list = new UserList();
-        }
-    }
 
     _validateForm() {
         if (!Validate.validateName(document.getElementById('name').value)) {
@@ -62,13 +53,22 @@ class UserController {
     }
 
     listUser() {
-        this._getUsersFromStorage();
-        return this._list.users;
+        this._list = new UserList();
+        return this._list.users();
     }
 
-    editUser() {
-
+    editUser(cpf) {
+        const editObject = this.listUser().filter(user => user.cpf == cpf);
+        return console.log(editObject);
     }
+
+    deleteUser(cpf){
+        console.log(cpf)
+        const list = this.listUser().filter(user => user.cpf != cpf);
+        console.log(list)
+        this._list.update(list);
+    }
+
 }
 
 export default UserController;

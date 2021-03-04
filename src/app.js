@@ -3,53 +3,63 @@ import UserController from './controllers/UserController.js';
 
 const route = window.location.pathname;
 const userController = new UserController();
+const userList = userController.listUser();
 
-if(route == '/user-list.html'){
-    userController.listUser();
-    let b = [
-        {
-          "name": "My name 1",
-          "cpf": "04080757247",
-          "phone": "11987654321",
-          "email": "myemail1@test.com.br"
-        },
-        {
-          "name": "My name 2",
-          "cpf": "77797584192",
-          "phone": "11987654321",
-          "email": "myemail2@test.com.br"
-        },
-        {
-          "name": "My name 3",
-          "cpf": "45486737688",
-          "phone": "11987654321",
-          "email": "myemail3@test.com.br"
-        }
-      ];
+if (route == '/user-list.html') {
 
+    const buildTable = users => {
 
-      var tbodyRef = document.getElementById('table').getElementsByTagName('tbody')[0];
+        console.log(users);
+        const tbodyRef = document.getElementById('table').getElementsByTagName('tbody')[0];
 
         // Insert a row at the end of table
-        
 
         // Insert a cell at the end of the row
-        //var newCell = ;
-        let btnDelete = '<button class="btn-danger" onclick="text()">Deletar</button>';
-        let btnEdit =  '<button class="btn-primary" onclick="text()">Editar</button>';
-        for (let index = 0; index < b.length; index++) {
+        for (let index = 0; index < users.length; index++) {
             let newRow = tbodyRef.insertRow();
-            newRow.insertCell().appendChild(document.createTextNode(b[index]['name']));
-            newRow.insertCell().appendChild(document.createTextNode(b[index]['cpf']));
-            newRow.insertCell().appendChild(document.createTextNode(b[index]['phone']));
-            newRow.insertCell().appendChild(document.createTextNode(b[index]['email']));
-           
+            newRow.insertCell().appendChild(document.createTextNode(users[index]['name']));
+            newRow.insertCell().appendChild(document.createTextNode(users[index]['cpf']));
+            newRow.insertCell().appendChild(document.createTextNode(users[index]['phone']));
+            newRow.insertCell().appendChild(document.createTextNode(users[index]['email']));
+            let btnDelete = '<button class="btn-danger btn-delete" id="' + users[index]['cpf'] + '">Deletar</button>';
+            let btnEdit = '<button class="btn-primary btn-edit" id="' + users[index]['cpf'] + '" >Editar</button>';
             newRow.insertCell().insertAdjacentHTML('beforeend', btnDelete + btnEdit);
         }
-        // Append a text node to the cell
-        //var newText = document.createTextNode('new row');
+        let btnDelete = document.querySelectorAll('.btn-delete');
+        let btnEdit = document.querySelectorAll('.btn-edit');
+        console.log(btnDelete)
 
-}else{
+        for (var i = 0; i < btnDelete.length; i++) {
+            btnDelete[i].addEventListener('click', function (event) {
+                console.log(event)
+                userController.deleteUser(event.target.id);
+                location.reload();
+
+            });
+            btnEdit[i].addEventListener('click', function (event) {
+                console.log(event)
+                userController.editUser(event.target.id)
+
+            });
+        }
+        /* for (var i = 0; i < btnEdit.length; i++) {
+            btnEdit[i].addEventListener('click', function (event) {
+                console.log(event)
+                console.log(userController.editUser(event.target.id));
+
+            });
+        } */
+    };
+    if (Promise.resolve(userList) == userList) {
+        userList.then(users => buildTable(users));
+    } else {
+        buildTable(userList);
+    }
+
+    //var newText = document.createTextNode('new row');
+
+} else {
+    const queryParams = new URLSearchParams(location.search);
     // Mascara do telefone
     document.getElementById('phone').addEventListener('input', function (e) {
         let n = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
@@ -58,7 +68,7 @@ if(route == '/user-list.html'){
 
     document.getElementById('cpf').addEventListener('input', function (e) {
         let n = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/);
-        e.target.value = (!n[2] ? n[1] : n[1] + '.' + n[2] + '.') +  (n[3] ? n[3] + '-' + n[4]: '') ;
+        e.target.value = (!n[2] ? n[1] : n[1] + '.' + n[2] + '.') + (n[3] ? n[3] + '-' + n[4] : '');
     });
 
     const submit = document.querySelector('#form-user');
@@ -70,6 +80,13 @@ if(route == '/user-list.html'){
             phone: document.getElementById('phone').value,
             email: document.getElementById('email').value
         }
-        userController.createUser(form);
+        const cpf = queryParams.get('cpf');
+        if (cpf && cpf.length > 0) {
+            userController.editUser(form);
+        } else {
+            userController.createUser(form, cpf);
+        }
     });
+
+
 }

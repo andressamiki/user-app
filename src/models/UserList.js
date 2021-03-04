@@ -7,26 +7,33 @@ class UserList {
     }
 
     pushUser(user) {
-        const requestMade = localStorage.getItem('requestMade');
-        if (this._users.length <= 0 && !requestMade) {
-            const userService = new UserService();
-            userService.fetchList()
-                .then(data => {
-                    this._users = data;
-                    this._users.push(user.plainObject());
-                    localStorage.setItem('requestMade', 1);
-                    localStorage.setItem('userList', JSON.stringify(this._users));
-                    window.location.href = window.location.origin + '/user-list.html';
-                });
-            return;
-        }
+        this._users = this.users();
+        //if (this._users.length <= 0 && !requestMade) {
+        //}
         this._users.push(user.plainObject());
         localStorage.setItem('userList', JSON.stringify(this._users));
         window.location.href = window.location.origin + '/user-list.html';
     }
 
-    get users() {
-        return [].concat(this._users);
+    users() {
+        const requestMade = localStorage.getItem('requestMade');
+        if(localStorage.getItem('userList') || requestMade){
+            return JSON.parse(localStorage.getItem('userList'))
+        }else{
+            const userService = new UserService();
+            return userService.fetchList()
+                .then(data => {
+                   this._users = data;
+                    localStorage.setItem('requestMade', 1);
+                    localStorage.setItem('userList', JSON.stringify(this._users));
+                    return  data;
+                });
+        }
+    }
+
+    update(list){
+        this._users = list;
+        localStorage.setItem('userList', JSON.stringify(this._users));
     }
 
 }
