@@ -53,7 +53,8 @@ body {
   max-width: 600px;
   margin: 0 auto;
   padding: 2.5rem 2rem;
-  background: white; }
+  background: white;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
 
 .container-table {
   max-width: 960px; }
@@ -89,6 +90,12 @@ button {
     background: #f6f6f6;
     color: #dddcdc; }
 
+.btn-danger {
+  background: #eb4a46;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  width: auto; }
+
 .form-control input {
   width: 100%;
   border: 0;
@@ -118,6 +125,18 @@ button {
   position: absolute;
   bottom: 5px;
   font-size: 1.1rem; }
+
+.msg-error {
+  position: absolute;
+  top: 100%;
+  color: #eb4a46;
+  font-size: 0.8rem;
+  display: none; }
+  .msg-error.invalid {
+    display: block; }
+
+input.invalid {
+  border-color: #eb4a46; }
 
 table {
   width: 100%; }

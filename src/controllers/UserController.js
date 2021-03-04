@@ -11,10 +11,12 @@ class UserController {
     }
 
     createUser(input) {
-        if (!this._validateForm) {
+        console.log(this._validateForm())
+        if (!this._validateForm()) {
             console.log('erro na validação')
-            return;
+            return false;
         }
+
         this._user = new User(
             input.name,
             input.cpf,
@@ -36,17 +38,25 @@ class UserController {
     }
 
     _validateForm() {
-        if (!Validate.validateName()) {
-            alert('nome inválido');
+        if (!Validate.validateName(document.getElementById('name').value)) {
+            document.getElementById('name').classList.add("invalid");
+            document.getElementById('msg-error-name').classList.add("invalid");
+            return false;
         }
-        if (!Validate.validateCpf()) {
-            alert('cpf inválido');
+        if (!Validate.validateCpf( document.getElementById('cpf').value)) {
+            document.getElementById('cpf').classList.add("invalid");
+            document.getElementById('msg-error-cpf').classList.add("invalid");
+            return false;
         }
-        if (!Validate.validateEmail()) {
-            alert('email inválido');
+        if (!Validate.validateEmail( document.getElementById('email').value)) {
+            document.getElementById('email').classList.add("invalid");
+            document.getElementById('msg-error-email').classList.add("invalid");
+            return false;
         }
-        if (!Validate.validatePhone()) {
-            alert('telefone inválido');
+        if (!Validate.validatePhone( document.getElementById('phone').value)) {
+            document.getElementById('phone').classList.add("invalid");
+            document.getElementById('msg-error-phone').classList.add("invalid");
+            return false;
         }
         return true;
     }

@@ -25,7 +25,7 @@ class Validate {
     }
 
     static validateName(value) {
-        if (value.length < 5) {
+        if (value.length < 3) {
             return false;
         }
         return true;

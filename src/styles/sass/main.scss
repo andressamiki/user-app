@@ -12,7 +12,7 @@ html{
 }
 
 body{
-  background: $light-gray;
+  background: #f8f9fa;
   padding: 1rem;
 }
 
@@ -21,6 +21,7 @@ body{
   margin: 0 auto;
   padding: 2.5rem 2rem;
   background: white;
+  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
 }
 
 .container-table{
@@ -65,6 +66,13 @@ button {
   }
 }
 
+.btn-danger{
+  background: $danger;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  width: auto;
+}
+
 .form-control{
   input{
     width: 100%;
@@ -104,6 +112,21 @@ button {
   }
   }
   
+}
+
+.msg-error{
+  position: absolute;
+  top: 100%;
+  color: $danger;
+  font-size: 0.8rem;
+  display: none;
+  &.invalid{
+    display: block;
+  }
+}
+
+input.invalid{
+  border-color: $danger;
 }
 
 table {
