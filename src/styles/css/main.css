@@ -46,7 +46,7 @@ html {
   font: 400 1rem 'Ubuntu',sans-serif; }
 
 body {
-  background: #f6f6f6;
+  background: #f8f9fa;
   padding: 1rem; }
 
 .container {
@@ -57,7 +57,7 @@ body {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
 
 .container-table {
-  max-width: 960px; }
+  max-width: 1200px; }
 
 .btn-group {
   display: flex;
@@ -94,7 +94,18 @@ button {
   background: #eb4a46;
   font-size: 0.7rem;
   padding: 0.2rem 0.5rem;
-  width: auto; }
+  width: auto;
+  display: inline-block;
+  margin-top: 0; }
+
+.btn-edit {
+  background: #333333;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  width: auto;
+  display: inline-block;
+  margin-right: 1rem;
+  margin-top: 0; }
 
 .form-control input {
   width: 100%;

@@ -12,7 +12,6 @@ class UserController {
 
     createUser(input) {
         if (!this._validateForm()) {
-            console.log('erro na validação')
             return false;
         }
 
@@ -57,15 +56,18 @@ class UserController {
         return this._list.users();
     }
 
-    editUser(cpf) {
-        const editObject = this.listUser().filter(user => user.cpf == cpf);
-        return console.log(editObject);
+    returnUser(cpf) {
+        const user = this.listUser().filter(user => user.cpf == cpf);
+        return user[0];
+    }
+
+    editUser(input){
+        this.deleteUser(input.cpf);
+        this.createUser(input);
     }
 
     deleteUser(cpf){
-        console.log(cpf)
         const list = this.listUser().filter(user => user.cpf != cpf);
-        console.log(list)
         this._list.update(list);
     }
 

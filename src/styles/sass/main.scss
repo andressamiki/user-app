@@ -25,7 +25,7 @@ body{
 }
 
 .container-table{
-  max-width: 960px;
+  max-width: 1200px;
 }
 
 .btn-group{
@@ -71,6 +71,19 @@ button {
   font-size: 0.7rem;
   padding: 0.2rem 0.5rem;
   width: auto;
+  display: inline-block;
+  margin-top: 0;
+}
+
+
+.btn-edit{
+  background: $brand;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  width: auto;
+  display: inline-block;
+  margin-right: 1rem;
+  margin-top: 0;
 }
 
 .form-control{
