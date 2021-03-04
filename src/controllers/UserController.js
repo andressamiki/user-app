@@ -7,7 +7,7 @@ class UserController {
 
     constructor() {
         this._user;
-        this._list = new UserList();
+        this._list;
     }
 
     createUser(input) {
@@ -21,7 +21,18 @@ class UserController {
             input.phone,
             input.email
         );
+
+        this._getUsersFromStorage();
         this._list.pushUser(this._user);
+    }
+
+    _getUsersFromStorage() {
+        const users = JSON.parse(localStorage.getItem('userList'));
+        if (!this._list && users && users.length > 0) {
+            this._list = new UserList(users);
+        } else {
+            this._list = new UserList();
+        }
     }
 
     _validateForm() {
@@ -41,8 +52,8 @@ class UserController {
     }
 
     listUser() {
-        this._list.localStorage();
-        return this._list;
+        this._getUsersFromStorage();
+        return this._list.users;
     }
 
     editUser() {
