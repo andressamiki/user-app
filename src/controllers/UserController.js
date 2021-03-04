@@ -11,8 +11,8 @@ class UserController {
     }
 
     createUser(input) {
-        if (!this._validateForm()) {
-            return false;
+        if (!this._validateForm(input)) {
+            throw new Error('The form is invalid');
         }
 
         this._user = new User(
@@ -24,26 +24,27 @@ class UserController {
 
         this._list = new UserList()
         this._list.pushUser(this._user);
+        return this._list;
     }
 
 
-    _validateForm() {
-        if (!Validate.validateName(document.getElementById('name').value)) {
+    _validateForm(input) {
+        if (!Validate.validateName(input.name)) {
             document.getElementById('name').classList.add("invalid");
             document.getElementById('msg-error-name').classList.add("invalid");
             return false;
         }
-        if (!Validate.validateCpf( document.getElementById('cpf').value)) {
+        if (!Validate.validateCpf(input.cpf)) {
             document.getElementById('cpf').classList.add("invalid");
             document.getElementById('msg-error-cpf').classList.add("invalid");
             return false;
         }
-        if (!Validate.validateEmail( document.getElementById('email').value)) {
+        if (!Validate.validateEmail(input.email)) {
             document.getElementById('email').classList.add("invalid");
             document.getElementById('msg-error-email').classList.add("invalid");
             return false;
         }
-        if (!Validate.validatePhone( document.getElementById('phone').value)) {
+        if (!Validate.validatePhone(input.phone)) {
             document.getElementById('phone').classList.add("invalid");
             document.getElementById('msg-error-phone').classList.add("invalid");
             return false;
