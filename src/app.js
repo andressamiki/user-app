@@ -49,13 +49,12 @@ if (route == '/user-list.html') {
         document.getElementById('phone').value = user.phone;
         document.getElementById('email').value = user.email;
     }
-   /*  document.getElementById('phone').addEventListener('input', function (e) {
+    document.getElementById('phone').addEventListener('input', function (e) {
         e.target.value = Mask.maskPhone(e.target.value);
-    }); */
+    });
 
     document.getElementById('cpf').addEventListener('input', function (e) {
-        let n = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/);
-        e.target.value = (!n[2] ? n[1] : n[1] + '.' + n[2] + '.') + (n[3] ? n[3] + '-' + n[4] : '');
+        e.target.value = Mask.maskCpf(e.target.value);
     });
 
     const submit = document.querySelector('#form-user');
@@ -63,8 +62,8 @@ if (route == '/user-list.html') {
         event.preventDefault();
         const form = {
             name: document.getElementById('name').value,
-            cpf: document.getElementById('cpf').value,
-            phone: document.getElementById('phone').value,
+            cpf: Mask.removeMask(document.getElementById('cpf').value),
+            phone: Mask.removeMask(document.getElementById('phone').value),
             email: document.getElementById('email').value
         }
         if (queryParams.get('cpf')) {

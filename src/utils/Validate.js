@@ -5,7 +5,7 @@ class Validate {
     }
 
     static validateCpf(value) {
-        const cpf = value.replace(/\D/g, '');
+        const cpf = value;
         if (cpf.toString().length != 11 || /^(\d)\1{10}$/.test(cpf)) {
             return false;
         }
@@ -42,6 +42,29 @@ class Validate {
     static validatePhone(value) {
         const regex = /\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}/
         if (!value.match(regex)) {
+            return false;
+        }
+        return true;
+    }
+
+    static validateForm(input) {
+        if (!this.validateName(input.name)) {
+            return [false, 'name'];
+        }
+        if (!this.validateCpf(input.cpf)) {
+            return [false, 'cpf'];
+        }
+        if (!this.validateEmail(input.email)) {
+            return [false, 'email'];
+        }
+        if (!this.validatePhone(input.phone)) {
+            return [false, 'phone'];
+        }
+        return [true, ''];
+    }
+
+    static validatePhone(value) {
+        if (value.length < 10) {
             return false;
         }
         return true;
