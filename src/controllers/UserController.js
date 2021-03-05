@@ -11,9 +11,9 @@ class UserController {
     }
 
     createUser(input) {
-        if (!this._validateForm(input)) {
+        /* if (!this._validateForm(input)) {
             throw new Error('The form is invalid');
-        }
+        } */
 
         this._user = new User(
             input.name,
@@ -24,7 +24,7 @@ class UserController {
 
         this._list = new UserList()
         this._list.pushUser(this._user);
-        return this._list;
+        window.location.replace('index.html');
     }
 
 

@@ -7,17 +7,18 @@ class UserList {
     }
 
     pushUser(user) {
-        this._users = this.users();
-        //if (this._users.length <= 0 && !requestMade) {
-        //}
+        /* this._users = this.users();
+        if (!this._users) {
+            this._users = [];
+        }
+        console.log(this._users); */
         this._users.push(user.plainObject());
         localStorage.setItem('userList', JSON.stringify(this._users));
-        window.location.href = window.location.origin + '/user-list.html';
     }
 
     users() {
         const requestMade = localStorage.getItem('requestMade');
-        if(localStorage.getItem('userList') || requestMade){
+        if(!localStorage.getItem('userList') && requestMade){
             return JSON.parse(localStorage.getItem('userList'))
         }else{
             const userService = new UserService();

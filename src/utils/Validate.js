@@ -1,7 +1,7 @@
 class Validate {
 
     constructor() {
-        throw new Error('This class cannot be instanciated, use the methods directly.');
+        throw new Error('This class cannot be instantiated, use the methods directly.');
     }
 
     static validateCpf(value) {

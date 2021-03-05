@@ -1,4 +1,6 @@
 import UserController from './controllers/UserController.js';
+import Mask from './utils/Mask.js';
+
 
 const route = window.location.pathname;
 const userController = new UserController();
@@ -47,11 +49,9 @@ if (route == '/user-list.html') {
         document.getElementById('phone').value = user.phone;
         document.getElementById('email').value = user.email;
     }
-
-    document.getElementById('phone').addEventListener('input', function (e) {
-        let n = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
-        e.target.value = !n[2] ? n[1] : '(' + n[1] + ') ' + n[2] + (n[3] ? '-' + n[3] : '');
-    });
+   /*  document.getElementById('phone').addEventListener('input', function (e) {
+        e.target.value = Mask.maskPhone(e.target.value);
+    }); */
 
     document.getElementById('cpf').addEventListener('input', function (e) {
         let n = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/);
