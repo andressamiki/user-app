@@ -12,6 +12,7 @@
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0",
     "jasmine": "^3.6.4",
+    "jasmine-local-storage": "^1.1.1",
     "node-sass": "^5.0.0"
   },
   "scripts": {

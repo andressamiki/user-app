@@ -11,9 +11,11 @@ class UserController {
     }
 
     createUser(input) {
-        /* if (!this._validateForm(input)) {
+        const validate = Validate.validateForm(input);
+        if (!validate[0]) {
+            this._returnError(validate[1]);
             throw new Error('The form is invalid');
-        } */
+        }
 
         this._user = new User(
             input.name,
@@ -22,39 +24,26 @@ class UserController {
             input.email
         );
 
-        this._list = new UserList()
-        this._list.pushUser(this._user);
-        window.location.replace('index.html');
-    }
-
-
-    _validateForm(input) {
-        if (!Validate.validateName(input.name)) {
-            document.getElementById('name').classList.add("invalid");
-            document.getElementById('msg-error-name').classList.add("invalid");
-            return false;
-        }
-        if (!Validate.validateCpf(input.cpf)) {
-            document.getElementById('cpf').classList.add("invalid");
-            document.getElementById('msg-error-cpf').classList.add("invalid");
-            return false;
-        }
-        if (!Validate.validateEmail(input.email)) {
-            document.getElementById('email').classList.add("invalid");
-            document.getElementById('msg-error-email').classList.add("invalid");
-            return false;
-        }
-        if (!Validate.validatePhone(input.phone)) {
-            document.getElementById('phone').classList.add("invalid");
-            document.getElementById('msg-error-phone').classList.add("invalid");
-            return false;
-        }
-        return true;
-    }
-
-    listUser() {
         this._list = new UserList();
-        return this._list.users();
+        this._list.users;
+        this._list.pushUser(this._user);
+        setTimeout(() => {
+            //button loader and success message
+        }, 3000);
+    }
+
+    _returnError(inputName) {
+        document.getElementById(inputName).classList.add("invalid");
+        document.getElementById('msg-error-' + inputName).classList.add("invalid");
+    }
+
+    async listUser() {
+        this._list = new UserList();
+        if (!localStorage.getItem('requestMade')) {
+            const data = await this._list.getUserAPI();
+            return this._list.users(data);
+        }
+        return this._list.users;
     }
 
     returnUser(cpf) {
@@ -62,12 +51,12 @@ class UserController {
         return user[0];
     }
 
-    editUser(input){
+    editUser(input) {
         this.deleteUser(input.cpf);
         this.createUser(input);
     }
 
-    deleteUser(cpf){
+    deleteUser(cpf) {
         const list = this.listUser().filter(user => user.cpf != cpf);
         this._list.update(list);
     }

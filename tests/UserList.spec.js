@@ -1,8 +1,14 @@
 import UserList from '../src/models/UserList';
 import User from '../src/models/User';
+require("jasmine-local-storage");
 
 describe('UserList', () => {
     const userList = new UserList();
+
+    beforeEach(function () {
+        mockLocalStorage();
+    });
+
     it('should create', () => {
         expect(userList).toBeTruthy();
     });
@@ -14,6 +20,6 @@ describe('UserList', () => {
             'andressa@gmail.com'
         );
         userList.pushUser(user);
-        //expect(storage).toString();
+        expect(userList.users).toEqual([user.plainObject()]);
     });
 });
