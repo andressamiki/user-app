@@ -41,7 +41,7 @@ class UserController {
         this._list = new UserList();
         if (!localStorage.getItem('requestMade')) {
             const data = await this._list.getUserAPI();
-            return this._list.users(data);
+            this._list.users(data);
         }
         return this._list.users;
     }

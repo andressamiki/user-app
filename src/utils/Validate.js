@@ -39,14 +39,6 @@ class Validate {
         return true;
     }
 
-    static validatePhone(value) {
-        const regex = /\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}/
-        if (!value.match(regex)) {
-            return false;
-        }
-        return true;
-    }
-
     static validateForm(input) {
         if (!this.validateName(input.name)) {
             return [false, 'name'];
