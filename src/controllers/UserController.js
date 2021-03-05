@@ -13,8 +13,7 @@ class UserController {
     createUser(input) {
         const validate = Validate.validateForm(input);
         if (!validate[0]) {
-            this._returnError(validate[1]);
-            throw new Error('The form is invalid');
+            this._showErrors(validate[1]);
         }
 
         this._user = new User(
@@ -32,12 +31,13 @@ class UserController {
         }, 3000);
     }
 
-    _returnError(inputName) {
+    _showErrors(inputName) {
         document.getElementById(inputName).classList.add("invalid");
         document.getElementById('msg-error-' + inputName).classList.add("invalid");
+        throw new Error('The form is invalid');
     }
 
-    async listUser() {
+    async userList() {
         this._list = new UserList();
         if (!localStorage.getItem('requestMade')) {
             const data = await this._list.getUserAPI();
@@ -46,8 +46,8 @@ class UserController {
         return this._list.users;
     }
 
-    returnUser(cpf) {
-        const user = this.listUser().filter(user => user.cpf == cpf);
+    getUserByCPF(cpf) {
+        const user = this.userList().filter(user => user.cpf == cpf);
         return user[0];
     }
 
@@ -57,7 +57,7 @@ class UserController {
     }
 
     deleteUser(cpf) {
-        const list = this.listUser().filter(user => user.cpf != cpf);
+        const list = this.userList().filter(user => user.cpf != cpf);
         this._list.update(list);
     }
 

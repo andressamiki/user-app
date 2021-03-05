@@ -16,6 +16,7 @@ class UserList {
         return this._users;
     }
 
+    // refactor that method
     async getUserAPI() {
         const userService = new UserService();
         const data = await userService.fetchList();
