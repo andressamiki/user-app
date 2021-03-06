@@ -13,7 +13,7 @@ html{
 
 body{
   background: #f8f9fa;
-  padding: 1rem;
+  padding: 2rem 1rem;
 }
 
 .container{
@@ -159,6 +159,28 @@ table {
   }
   td,th{
     padding: 1rem;
+  }
+}
+
+header{
+  nav{
+    position: fixed;
+    width: 100%;
+    background-color: $dark-cyan;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+  ul {
+    width: 100%;
+    li{
+      display: inline-block;
+      padding-right: 2rem;
+      a{
+        text-decoration: none;
+        color: $white;
+      }
+    }
+  }
   }
 }
 

@@ -47,7 +47,7 @@ html {
 
 body {
   background: #f8f9fa;
-  padding: 1rem; }
+  padding: 2rem 1rem; }
 
 .container {
   max-width: 600px;
@@ -162,6 +162,22 @@ table {
       background: #f6f6f6; }
   table td, table th {
     padding: 1rem; }
+
+header nav {
+  position: fixed;
+  width: 100%;
+  background-color: #00c8b3;
+  top: 0;
+  left: 0;
+  padding: 1rem; }
+  header nav ul {
+    width: 100%; }
+    header nav ul li {
+      display: inline-block;
+      padding-right: 2rem; }
+      header nav ul li a {
+        text-decoration: none;
+        color: #ffffff; }
 
 @media (max-width: 1080px) {
   html {
