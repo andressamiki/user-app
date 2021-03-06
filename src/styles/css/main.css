@@ -179,6 +179,36 @@ header nav {
         text-decoration: none;
         color: #ffffff; }
 
+#icon-loader {
+  display: none;
+  margin: -20px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  border: 3px solid #00c8b3;
+  border-top: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
+  width: 24px;
+  height: 24px;
+  -webkit-animation: spin 2s linear infinite;
+  /* Safari */
+  animation: spin 2s linear infinite; }
+  #icon-loader.active + span {
+    display: none; }
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
 @media (max-width: 1080px) {
   html {
     font-size: 93.75%; } }
