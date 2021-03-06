@@ -22,9 +22,7 @@ class UserController {
             input.phone,
             input.email
         );
-
         this._list = new UserList();
-        this._list.users;
         this._list.pushUser(this._user);
         setTimeout(() => {
             //button loader and success message
@@ -37,13 +35,9 @@ class UserController {
         throw new Error('The form is invalid');
     }
 
-    async userList() {
+    userList() {
         this._list = new UserList();
-        if (!localStorage.getItem('requestMade')) {
-            const data = await this._list.getUserAPI();
-            this._list.users(data);
-        }
-        return this._list.users;
+        return this._list.getUsers();
     }
 
     getUserByCPF(cpf) {

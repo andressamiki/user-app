@@ -8,9 +8,9 @@ const route = window.location.pathname;
 const userController = new UserController();
 const userList = userController.userList();
 
-
 switch (route) {
     case '/':
+    case '/index.html':
         const formView = new FormView();
         const queryParams = new URLSearchParams(window.location.search);
         const cpfParam = queryParams.get('cpf');
@@ -31,6 +31,7 @@ switch (route) {
 
         formView.submit.addEventListener('submit', event => {
             event.preventDefault();
+            formView.removeMasks();
             if (queryParams.get('cpf')) {
                 userController.editUser(formView.formInputs);
             } else {

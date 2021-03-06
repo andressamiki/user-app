@@ -5,8 +5,8 @@ class FormView {
     constructor() {
         this._submit = document.getElementById('form-user');
         this._name = document.getElementById('name');
-        this._cpf = Mask.removeMask(document.getElementById('cpf'));
-        this._phone = Mask.removeMask(document.getElementById('phone'));
+        this._cpf = document.getElementById('cpf');
+        this._phone = document.getElementById('phone');
         this._email = document.getElementById('email');
     }
 
@@ -19,12 +19,21 @@ class FormView {
         };
     }
 
+    removeMasks() {
+        this._cpf.value = Mask.removeMask(this._cpf.value);
+        this._phone.value = Mask.removeMask(this._phone.value);
+    }
+
     get cpf() {
         return this._cpf;
     }
 
     get phone() {
         return this._phone;
+    }
+
+    get submit() {
+        return this._submit;
     }
 
     set name(name) {
