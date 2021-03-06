@@ -5,14 +5,21 @@ global.fetch = require('node-fetch');
 
 describe('UserController', () => {
     const userController = new UserController();
-    const objt = [{
+    const obj = [{
         name: 'Andressa',
         cpf: '64755998832',
         phone: '13988331220',
         email: 'andressa@gmail.com'
+    },
+    {
+        name: 'Andressa',
+        cpf: '64755998838',
+        phone: '13988331220',
+        email: 'andressa@gmail.com'
     }];
-    localStorage.setItem('userList', JSON.stringify(objt));
-    localStorage.setItem('requestMade', 1);
+    beforeEach(function () {
+        mockLocalStorage();
+    });
     it('should create', () => {
         expect(userController).toBeTruthy();
     });
@@ -30,18 +37,20 @@ describe('UserController', () => {
     }); */
     it('should get user list', () => {
         const list = userController.userList();
-        list.then(result => expect(result).toEqual(objt));
+        list.then(result => expect(result).toEqual(obj));
     });
     it('should get user by cpf', () => {
-        localStorage.removeItem('userList');
-        localStorage.removeItem('requestMade');
-        const cpf = 77797584192;
+        localStorage.setItem('userList', JSON.stringify(obj));
+        localStorage.setItem('requestMade', 1);
+        const cpf = '64755998832';
         const user = userController.getUserByCPF(cpf);
-        expect(user).toEqual({
-            "name": "My name 2",
-            "cpf": "77797584192",
-            "phone": "11987654321",
-            "email": "myemail2@test.com.br"
-        });
+        expect(user).toEqual(obj[0]);
+    });
+    it('should verify cpf', () => {
+        localStorage.setItem('userList', JSON.stringify(obj));
+        localStorage.setItem('requestMade', 1);
+        const cpf = '64755998832';
+        const hasUser = userController.verifyCPF(cpf);
+        expect(hasUser).toBeTrue();
     });
 });

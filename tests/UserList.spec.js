@@ -7,7 +7,7 @@ global.fetch = require('node-fetch');
 describe('UserList', () => {
     const userList = new UserList();
 
-    const objt = [{
+    const obj = [{
         name: 'Andressa',
         cpf: '64755998832',
         phone: '13988331220',
@@ -61,10 +61,10 @@ describe('UserList', () => {
         list.then(result => expect(result).toEqual(userListAPI))
     });
     it('should get list user', () => {
-        localStorage.setItem('userList', JSON.stringify(objt));
+        localStorage.setItem('userList', JSON.stringify(obj));
         localStorage.setItem('requestMade', 1);
         const list = userList.getUsers();
-        list.then(result => expect(result).toEqual(objt));
+        list.then(result => expect(result).toEqual(obj));
     });
     it('should set list user', () => {
         userList.users = [user.plainObject()];
