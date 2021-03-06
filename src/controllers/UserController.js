@@ -12,7 +12,7 @@ class UserController {
     }
 
     createUser(formView) {
-        document.getElementById('icon-loader').classList.add('active');
+        formView.callLoader();
         const input = formView.formInputs;
         const inputWithoutMask = {
             name: input.name,
@@ -20,12 +20,18 @@ class UserController {
             phone: Mask.removeMask(input.phone),
             email: input.email
         }
+
         const validate = Validate.validateForm(inputWithoutMask);
         if (!validate[0]) {
-            this._showErrors(validate[1]);
-            document.getElementById('icon-loader').classList.remove('active');
+            formView.showErrors(validate[1]);
             throw new Error('The form is invalid');
         }
+
+        if(this.verifyCPF(inputWithoutMask.cpf)){
+            alert('Cpf já cadastrado');
+            throw new Error('The form is invalid');
+        }
+
         this._user = new User(
             inputWithoutMask.name,
             inputWithoutMask.cpf,
@@ -34,16 +40,7 @@ class UserController {
         );
         this._list = new UserList();
         this._list.pushUser(this._user);
-        setTimeout(() => {
-            formView.cleanForm();
-            document.getElementById('icon-loader').classList.remove('active');
-            alert('Created user')
-        }, 1000);
-    }
-
-    _showErrors(inputName) {
-        document.getElementById(inputName).classList.add("invalid");
-        document.getElementById('msg-error-' + inputName).classList.add("invalid");
+        formView.showSuccess();
     }
 
     async userList() {
@@ -67,6 +64,12 @@ class UserController {
         this._list = new UserList();
         const list = this._list.users.filter(user => user.cpf != cpf);
         this._list.update(list);
+    }
+
+    verifyCPF(cpf){
+        this._list = new UserList();
+        const hasUser = this._list.users.some(user => user.cpf == cpf);
+        return hasUser;
     }
 
 }

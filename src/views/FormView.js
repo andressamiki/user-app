@@ -24,6 +24,24 @@ class FormView {
         this._email.value = '';
     }
 
+    showSuccess(){
+        setTimeout(() => {
+            this.cleanForm();
+            document.getElementById('icon-loader').classList.remove('active');
+            alert('Created user')
+        }, 1000);
+    }
+
+    callLoader(){
+        document.getElementById('icon-loader').classList.add('active');
+    }
+
+    showErrors(inputName) {
+        document.getElementById('icon-loader').classList.remove('active');
+        document.getElementById(inputName).classList.add("invalid");
+        document.getElementById('msg-error-' + inputName).classList.add("invalid");
+    }
+
     get cpf() {
         return this._cpf;
     }
