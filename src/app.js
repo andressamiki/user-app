@@ -28,7 +28,6 @@ switch (route) {
         formView.cpf.addEventListener('input', event => {
             event.target.value = Mask.maskCpf(event.target.value);
         });
-
         formView.submit.addEventListener('submit', event => {
             event.preventDefault();
             formView.removeMasks();
@@ -41,11 +40,13 @@ switch (route) {
         break;
     case '/user-list.html':
         const userListView = new UserListView();
+
         if (Promise.resolve(userList) == userList) {
             userList.then(users => userListView.renderTable(users));
         } else {
             userListView.renderTable(userList);
         }
+
         break;
 
     default:

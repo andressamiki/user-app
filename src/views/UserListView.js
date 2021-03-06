@@ -1,12 +1,15 @@
+import UserController from '../controllers/UserController.js';
+
+
 class UserListView {
 
     constructor() {
         this._tbodyRef = document.getElementById('table').getElementsByTagName('tbody')[0];
-        this._btnDelete = document.querySelectorAll('.btn-delete');
-        this._btnEdit = document.querySelectorAll('.btn-edit');
+
     }
 
     renderTable(users) {
+        const userController = new UserController();
 
         for (let index = 0; index < users.length; index++) {
             let newRow = this._tbodyRef.insertRow();
@@ -18,14 +21,15 @@ class UserListView {
             let btnEdit = '<button class="btn-primary btn-edit" id="' + users[index]['cpf'] + '" >Editar</button>';
             newRow.insertCell().insertAdjacentHTML('beforeend', btnEdit + btnDelete);
         }
-
-        for (let i = 0; i < this._btnDelete.length; i++) {
-            this._btnDelete[i].addEventListener('click', event => {
+        const buttonsDelete = document.querySelectorAll('.btn-delete');
+        const buttonsEdit = document.querySelectorAll('.btn-edit');
+        for (let i = 0; i < buttonsDelete.length; i++) {
+            buttonsDelete[i].addEventListener('click', event => {
                 userController.deleteUser(event.target.id);
                 location.reload();
 
             });
-            this._btnEdit[i].addEventListener('click', event => {
+            buttonsEdit[i].addEventListener('click', event => {
                 window.location.replace('index.html' + '?cpf=' + event.target.id);
             });
         }

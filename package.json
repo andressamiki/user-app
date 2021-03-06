@@ -4,7 +4,8 @@
   "description": "",
   "main": "gulpfile.js",
   "dependencies": {
-    "del": "^6.0.0"
+    "del": "^6.0.0",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -13,12 +14,12 @@
     "gulp-sass": "^4.1.0",
     "jasmine": "^3.6.4",
     "jasmine-local-storage": "^1.1.1",
-    "node-sass": "^5.0.0",
-    "cross-env": "^7.0.3"
-  },
+    "node-sass": "^5.0.0"
+    },
   "scripts": {
     "test": "babel-node spec/run.js",
-    "gulp": "cross-env node ./node_modules/.bin/gulp"
+    "gulp-unix": "node ./node_modules/.bin/gulp",
+    "gulp-windows": "./node_modules/.bin/gulp"
   },
   "repository": {
     "type": "git",

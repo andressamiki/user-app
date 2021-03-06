@@ -1,18 +1,18 @@
 import UserList from '../src/models/UserList';
 import User from '../src/models/User';
-import UserService from '../src/services/UserService';
 
 require("jasmine-local-storage");
+global.fetch = require('node-fetch');
 
 describe('UserList', () => {
     const userList = new UserList();
 
-    const objt = {
+    const objt = [{
         name: 'Andressa',
         cpf: '64755998832',
         phone: '13988331220',
         email: 'andressa@gmail.com'
-    };
+    }];
 
     const user = new User(
         'Andressa',
@@ -50,22 +50,21 @@ describe('UserList', () => {
         expect(userList).toBeTruthy();
     });
     it('should push user to list', () => {
-        userList._users = []
-        const newUser = new User(
-            'Andressa',
-            '64755998832',
-            '13988331220',
-            'andressa@gmail.com'
-        );
-
-        userList.pushUser(newUser);
-        expect(userList._users).toEqual([newUser.plainObject()]);
+        userList._users = [];
+        userList.pushUser(user);
+        expect(userList._users).toEqual([user.plainObject()]);
+    });
+    it('should fetch users api', () => {
+        localStorage.removeItem('userList');
+        localStorage.removeItem('requestMade');
+        const list = userList.getUsers();
+        list.then(result => expect(result).toEqual(userListAPI))
     });
     it('should get list user', () => {
-        localStorage.setItem('userList', JSON.stringify([objt]));
+        localStorage.setItem('userList', JSON.stringify(objt));
         localStorage.setItem('requestMade', 1);
-        const list = userList.users;
-        expect(list).toEqual([objt]);
+        const list = userList.getUsers();
+        list.then(result => expect(result).toEqual(objt));
     });
     it('should set list user', () => {
         userList.users = [user.plainObject()];

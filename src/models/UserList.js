@@ -20,12 +20,16 @@ class UserList {
             return data;
         }
         this._users = JSON.parse(localStorage.getItem('userList'));
-        console.log(this._users)
         return this._users;
     }
 
     set users(userList) {
         this._users = userList;
+    }
+
+    get users() {
+        this._users = JSON.parse(localStorage.getItem('userList'));
+        return this._users;
     }
 
     update(list){

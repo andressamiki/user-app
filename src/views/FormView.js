@@ -41,15 +41,15 @@ class FormView {
     }
 
     set cpf(cpf) {
-        this.cpf.value = cpf;
+        this._cpf.value = cpf;
     }
 
     set phone(phone) {
-        this.phone.value = phone;
+        this._phone.value = phone;
     }
 
-    set email(name) {
-        this.email.value = email;
+    set email(email) {
+        this._email.value = email;
     }
 
 }

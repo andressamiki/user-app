@@ -35,13 +35,15 @@ class UserController {
         throw new Error('The form is invalid');
     }
 
-    userList() {
+    async userList() {
         this._list = new UserList();
-        return this._list.getUsers();
+        const list = await this._list.getUsers();
+        return list;
     }
 
     getUserByCPF(cpf) {
-        const user = this.userList().filter(user => user.cpf == cpf);
+        this._list = new UserList();
+        const user = this._list.users.filter(user => user.cpf == cpf);
         return user[0];
     }
 
@@ -51,7 +53,8 @@ class UserController {
     }
 
     deleteUser(cpf) {
-        const list = this.userList().filter(user => user.cpf != cpf);
+        this._list = new UserList();
+        const list = this._list.users.filter(user => user.cpf != cpf);
         this._list.update(list);
     }
 
