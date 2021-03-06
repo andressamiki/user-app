@@ -1,5 +1,5 @@
 <h1 align="center">
-    User Up 💻
+    User App 💻
 </h1>
 
 <p align="center">
@@ -10,14 +10,11 @@
 </p>
 
 <div style="display: flex; flex-direction: row;">
-  <img width="30%" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/celular-mobile.png" />
-  <img  width="70%" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/desktop-form.png" />
+  <img width="100%" style="border-radius: 10px" height="auto" alt="pagina Form" title="Pagina form" src="assets/form.png" />
 <div>
 <div style="display: flex; flex-direction: row;">
-  <img  width="30%" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/celular-mobile-table.png" />
-  <img  width="70%" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/desktop-table.png" />
-  <div>
-
+  <img  width="100%" style="border-radius: 10px" height="auto" alt="Pagina tabela" title="Pagina tabela" src="assets/task.png" />
+<div>
 
 <h2 id="objective" > 🎯 Objetivos </h2>
 
