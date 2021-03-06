@@ -9,6 +9,16 @@
  <a href="#author">Autora</a> 
 </p>
 
+<div style="display: flex; flex-direction: row;">
+  <img width="300" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/celular-mobile.png" />
+  <img style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/desktop-form.png" />
+<div>
+<div style="display: flex; flex-direction: row;">
+  <img width="300" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/celular-mobile-table.png" />
+  <img style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/desktop-table.png" />
+  <div>
+
+
 <h2 id="objective" > 🎯 Objetivos </h2>
 
 Desenvolver uma aplicação que deve conter duas páginas, uma que exibe um formulário para cadastro de dados, e outra que liste os dados cadastrados.
@@ -22,6 +32,29 @@ Desenvolver uma aplicação que deve conter duas páginas, uma que exibe um form
 
 
 <h2 id="usage" > 👷 Como rodar a aplicação </h2>
+
+```bash
+# Clone Repository
+$ git clone https://github.com/andressamiki/user-app.git
+
+# Go to server folder
+$ cd user-app
+
+# Install Dependencies
+$ npm install
+
+# Run Aplication
+$
+
+# Access localhost
+
+# Testing
+$ npm test
+
+# Compile .scss
+$ npm run gulp-windows
+
+```
 
 <h2 id="author"> 💻 Autora </h2>
 
