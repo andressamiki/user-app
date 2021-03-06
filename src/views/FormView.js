@@ -1,5 +1,3 @@
-import Mask from '../utils/Mask.js';
-
 class FormView {
 
     constructor() {
@@ -19,9 +17,11 @@ class FormView {
         };
     }
 
-    removeMasks() {
-        this._cpf.value = Mask.removeMask(this._cpf.value);
-        this._phone.value = Mask.removeMask(this._phone.value);
+    cleanForm() {
+        this._name.value = '';
+        this._cpf.value = '';
+        this._phone.value = '';
+        this._email.value = '';
     }
 
     get cpf() {

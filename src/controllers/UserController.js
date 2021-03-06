@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import UserList from '../models/UserList.js';
 import Validate from '../utils/Validate.js';
+import Mask from '../utils/Mask.js';
 
 
 class UserController {
@@ -10,29 +11,39 @@ class UserController {
         this._list;
     }
 
-    createUser(input) {
-        const validate = Validate.validateForm(input);
+    createUser(formView) {
+        document.getElementById('icon-loader').classList.add('active');
+        const input = formView.formInputs;
+        const inputWithoutMask = {
+            name: input.name,
+            cpf: Mask.removeMask(input.cpf),
+            phone: Mask.removeMask(input.phone),
+            email: input.email
+        }
+        const validate = Validate.validateForm(inputWithoutMask);
         if (!validate[0]) {
             this._showErrors(validate[1]);
+            document.getElementById('icon-loader').classList.remove('active');
+            throw new Error('The form is invalid');
         }
-
         this._user = new User(
-            input.name,
-            input.cpf,
-            input.phone,
-            input.email
+            inputWithoutMask.name,
+            inputWithoutMask.cpf,
+            inputWithoutMask.phone,
+            inputWithoutMask.email
         );
         this._list = new UserList();
         this._list.pushUser(this._user);
         setTimeout(() => {
-            //button loader and success message
-        }, 3000);
+            formView.cleanForm();
+            document.getElementById('icon-loader').classList.remove('active');
+            alert('Created user')
+        }, 1000);
     }
 
     _showErrors(inputName) {
         document.getElementById(inputName).classList.add("invalid");
         document.getElementById('msg-error-' + inputName).classList.add("invalid");
-        throw new Error('The form is invalid');
     }
 
     async userList() {
@@ -47,9 +58,9 @@ class UserController {
         return user[0];
     }
 
-    editUser(input) {
-        this.deleteUser(input.cpf);
-        this.createUser(input);
+    editUser(formView) {
+        this.deleteUser(formView.formInputs.cpf);
+        this.createUser(formView);
     }
 
     deleteUser(cpf) {

@@ -30,11 +30,10 @@ switch (route) {
         });
         formView.submit.addEventListener('submit', event => {
             event.preventDefault();
-            formView.removeMasks();
             if (queryParams.get('cpf')) {
-                userController.editUser(formView.formInputs);
+                userController.editUser(formView);
             } else {
-                userController.createUser(formView.formInputs);
+                userController.createUser(formView);
             }
         });
         break;
