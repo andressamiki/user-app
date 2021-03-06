@@ -182,7 +182,6 @@ header nav {
 #icon-loader {
   display: none;
   margin: -20px;
-  display: inline-block;
   vertical-align: middle;
   border-radius: 50%;
   border: 3px solid #00c8b3;
@@ -193,8 +192,10 @@ header nav {
   -webkit-animation: spin 2s linear infinite;
   /* Safari */
   animation: spin 2s linear infinite; }
-  #icon-loader.active + span {
-    display: none; }
+  #icon-loader.active {
+    display: inline-block; }
+    #icon-loader.active + span {
+      display: none; }
 
 /* Safari */
 @-webkit-keyframes spin {

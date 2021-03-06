@@ -188,7 +188,6 @@ header{
 #icon-loader {
   display: none;
   margin: -20px;
-  display: inline-block;
   vertical-align: middle;
   border-radius: 50%;
   border: 3px solid $dark-cyan;
@@ -198,8 +197,11 @@ header{
   height: 24px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
-  &.active + span{
+  &.active{ 
+    display: inline-block;
+    &+ span{
     display: none;
+    }
   }
 }
 
