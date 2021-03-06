@@ -12,7 +12,9 @@ class Mask {
 
     static maskCpf(value) {
         let cpfFormat = value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,3})(\d{0,2})/);
-        cpfFormat = (!cpfFormat[2] ? cpfFormat[1] : cpfFormat[1] + '.' + cpfFormat[2] + '.') + (cpfFormat[3] ? cpfFormat[3] + '-' + cpfFormat[4] : '');
+        cpfFormat = (cpfFormat[2] ? cpfFormat[1] + '.' : cpfFormat[1]) +
+            (cpfFormat[3] ? cpfFormat[2] + '.' : cpfFormat[2]) +
+            (cpfFormat[4] ? cpfFormat[3] + '-' : cpfFormat[3]) + (cpfFormat[4])
         return cpfFormat;
     }
 
