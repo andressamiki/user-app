@@ -10,12 +10,12 @@
 </p>
 
 <div style="display: flex; flex-direction: row;">
-  <img width="300" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/celular-mobile.png" />
-  <img style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/desktop-form.png" />
+  <img width="30%" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/celular-mobile.png" />
+  <img  width="70%" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/desktop-form.png" />
 <div>
 <div style="display: flex; flex-direction: row;">
-  <img width="300" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/celular-mobile-table.png" />
-  <img style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/desktop-table.png" />
+  <img  width="30%" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/celular-mobile-table.png" />
+  <img  width="70%" style="border-radius: 10px" height="auto" alt="level.up" title="Level Up" src="assets/desktop-table.png" />
   <div>
 
 
@@ -58,7 +58,7 @@ $ npm run gulp-windows
 
 <h2 id="author"> 💻 Autora </h2>
 
-<img style="border-radius: 50%;" src="assets/andressa.jpg" width="100px;" alt=""/>
+<img style="border-radius: 50%;" src="assets/andressa.jpg" width="20%" alt=""/>
 
 [![Linkedin: andressamiki](https://img.shields.io/badge/-andressamiki-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/andressamiki/)](https://www.linkedin.com/in/andressa-de-souza-miki-022630b2)
 [![GitHub Andressa](https://img.shields.io/github/followers/andressamiki?label=follow&style=social)](https://github.com/andressamiki)
