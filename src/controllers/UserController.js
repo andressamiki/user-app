@@ -11,7 +11,7 @@ class UserController {
         this._list;
     }
 
-    createUser(formView) {
+    createUser(formView, successMessage) {
         formView.callLoader();
         const input = formView.formInputs;
         const inputWithoutMask = {
@@ -28,7 +28,7 @@ class UserController {
         }
 
         if(this.verifyCPF(inputWithoutMask.cpf)){
-            alert('Cpf já cadastrado');
+            formView.isDuplicateCPF();
             throw new Error('The form is invalid');
         }
 
@@ -40,7 +40,7 @@ class UserController {
         );
         this._list = new UserList();
         this._list.pushUser(this._user);
-        formView.showSuccess();
+        formView.showSuccess(successMessage);
     }
 
     async userList() {
@@ -57,7 +57,7 @@ class UserController {
 
     editUser(formView) {
         this.deleteUser(formView.formInputs.cpf);
-        this.createUser(formView);
+        this.createUser(formView, 'Usuário editado com sucesso.');
     }
 
     deleteUser(cpf) {

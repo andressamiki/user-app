@@ -12,7 +12,7 @@ html{
 }
 
 body{
-  background: #f8f9fa;
+  background: $body-color;
   padding: 2rem 1rem;
 }
 
@@ -21,26 +21,40 @@ body{
   margin: 0 auto;
   padding: 2.5rem 2rem;
   background: white;
-  box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+  box-shadow: 0 .125rem .25rem $box-shadow;
 }
 
 .container-table{
   max-width: 1200px;
-}
-
-.btn-group{
-  display: flex;
-  justify-content: flex-end;
-  .btn-primary{
-    max-width: 200px;
-    text-align: center;
-  }
+  overflow: scroll;
 }
 
 h1{
   font: 500 1.8rem 'Ubuntu', sans-serif;
   text-align: center;
   padding: 3rem;
+}
+
+header{
+  nav{
+    position: fixed;
+    width: 100%;
+    background-color: $dark-cyan;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    ul {
+      width: 100%;
+      li{
+        display: inline-block;
+        padding-right: 2rem;
+        a{
+          text-decoration: none;
+          color: $white;
+        }
+      }
+    }
+  }
 }
 
 button {
@@ -53,37 +67,41 @@ button {
   font-size: 1.1rem;
   font-weight: 500;
   margin-top: 2rem;
-}
-
-.btn-primary{
-  background: $dark-cyan;
-  &.loader, &:hover{
-    background: $light-cyan;
+  &.btn-group{
+    display: flex;
+    justify-content: flex-end;
+    .btn-primary{
+      max-width: 200px;
+      text-align: center;
+    }
   }
-  &:disabled{
-    background: $light-gray;
-    color: $gray;
+  &.btn-primary{
+    background: $dark-cyan;
+    &.loader, &:hover{
+      background: $light-cyan;
+    }
+    &:disabled{
+      background: $light-gray;
+      color: $gray;
+    }
   }
-}
-
-.btn-danger{
-  background: $danger;
-  font-size: 0.7rem;
-  padding: 0.2rem 0.5rem;
-  width: auto;
-  display: inline-block;
-  margin-top: 0;
-}
-
-
-.btn-edit{
-  background: $brand;
-  font-size: 0.7rem;
-  padding: 0.2rem 0.5rem;
-  width: auto;
-  display: inline-block;
-  margin-right: 1rem;
-  margin-top: 0;
+  &.btn-danger{
+    background: $danger;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    width: auto;
+    display: inline-block;
+    margin-top: 0;
+  }
+  &.btn-edit{
+    background: $brand;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    width: auto;
+    display: inline-block;
+    margin-right: 1rem;
+    margin-top: 0;
+  }
 }
 
 .form-control{
@@ -102,7 +120,6 @@ button {
     height: 45px;
     margin-bottom: 1rem;
   }
-
   input:focus, input:valid {
     &+label{
       bottom: calc(100% - 16px);
@@ -111,20 +128,20 @@ button {
       color: $dark-gray;
     }
   }
-
   input:valid {
     font-size: 1.1rem;
   }
-
   input:invalid:not(:focus) {
     &+label{
-    color: $dark-gray;
-    position: absolute;
-    bottom: 5px;
-    font-size: 1.1rem;
+      color: $dark-gray;
+      position: absolute;
+      bottom: 5px;
+      font-size: 1.1rem;
+    }
+  } 
+  input.invalid{
+    border-color: $danger;
   }
-  }
-  
 }
 
 .msg-error{
@@ -136,10 +153,6 @@ button {
   &.invalid{
     display: block;
   }
-}
-
-input.invalid{
-  border-color: $danger;
 }
 
 table {
@@ -162,37 +175,14 @@ table {
   }
 }
 
-header{
-  nav{
-    position: fixed;
-    width: 100%;
-    background-color: $dark-cyan;
-    top: 0;
-    left: 0;
-    padding: 1rem;
-  ul {
-    width: 100%;
-    li{
-      display: inline-block;
-      padding-right: 2rem;
-      a{
-        text-decoration: none;
-        color: $white;
-      }
-    }
-  }
-  }
-}
-
-
 #icon-loader {
   display: none;
   margin: -20px;
   vertical-align: middle;
   border-radius: 50%;
   border: 3px solid $dark-cyan;
-  border-top: 3px solid #ffffff;
-  border-right: 3px solid #ffffff;
+  border-top: 3px solid $white;
+  border-right: 3px solid $white;
   width: 24px;
   height: 24px;
   -webkit-animation: spin 2s linear infinite; /* Safari */

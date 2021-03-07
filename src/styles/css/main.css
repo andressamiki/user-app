@@ -57,19 +57,29 @@ body {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
 
 .container-table {
-  max-width: 1200px; }
-
-.btn-group {
-  display: flex;
-  justify-content: flex-end; }
-  .btn-group .btn-primary {
-    max-width: 200px;
-    text-align: center; }
+  max-width: 1200px;
+  overflow: scroll; }
 
 h1 {
   font: 500 1.8rem 'Ubuntu', sans-serif;
   text-align: center;
   padding: 3rem; }
+
+header nav {
+  position: fixed;
+  width: 100%;
+  background-color: #00c8b3;
+  top: 0;
+  left: 0;
+  padding: 1rem; }
+  header nav ul {
+    width: 100%; }
+    header nav ul li {
+      display: inline-block;
+      padding-right: 2rem; }
+      header nav ul li a {
+        text-decoration: none;
+        color: #ffffff; }
 
 button {
   cursor: pointer;
@@ -81,31 +91,34 @@ button {
   font-size: 1.1rem;
   font-weight: 500;
   margin-top: 2rem; }
-
-.btn-primary {
-  background: #00c8b3; }
-  .btn-primary.loader, .btn-primary:hover {
-    background: rgba(0, 200, 179, 0.7); }
-  .btn-primary:disabled {
-    background: #f6f6f6;
-    color: #dddcdc; }
-
-.btn-danger {
-  background: #eb4a46;
-  font-size: 0.7rem;
-  padding: 0.2rem 0.5rem;
-  width: auto;
-  display: inline-block;
-  margin-top: 0; }
-
-.btn-edit {
-  background: #333333;
-  font-size: 0.7rem;
-  padding: 0.2rem 0.5rem;
-  width: auto;
-  display: inline-block;
-  margin-right: 1rem;
-  margin-top: 0; }
+  button.btn-group {
+    display: flex;
+    justify-content: flex-end; }
+    button.btn-group .btn-primary {
+      max-width: 200px;
+      text-align: center; }
+  button.btn-primary {
+    background: #00c8b3; }
+    button.btn-primary.loader, button.btn-primary:hover {
+      background: rgba(0, 200, 179, 0.7); }
+    button.btn-primary:disabled {
+      background: #f6f6f6;
+      color: #dddcdc; }
+  button.btn-danger {
+    background: #eb4a46;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    width: auto;
+    display: inline-block;
+    margin-top: 0; }
+  button.btn-edit {
+    background: #333333;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    width: auto;
+    display: inline-block;
+    margin-right: 1rem;
+    margin-top: 0; }
 
 .form-control input {
   width: 100%;
@@ -137,6 +150,9 @@ button {
   bottom: 5px;
   font-size: 1.1rem; }
 
+.form-control input.invalid {
+  border-color: #eb4a46; }
+
 .msg-error {
   position: absolute;
   top: 100%;
@@ -145,9 +161,6 @@ button {
   display: none; }
   .msg-error.invalid {
     display: block; }
-
-input.invalid {
-  border-color: #eb4a46; }
 
 table {
   width: 100%; }
@@ -162,22 +175,6 @@ table {
       background: #f6f6f6; }
   table td, table th {
     padding: 1rem; }
-
-header nav {
-  position: fixed;
-  width: 100%;
-  background-color: #00c8b3;
-  top: 0;
-  left: 0;
-  padding: 1rem; }
-  header nav ul {
-    width: 100%; }
-    header nav ul li {
-      display: inline-block;
-      padding-right: 2rem; }
-      header nav ul li a {
-        text-decoration: none;
-        color: #ffffff; }
 
 #icon-loader {
   display: none;

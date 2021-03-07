@@ -22,13 +22,16 @@ class FormView {
         this._cpf.value = '';
         this._phone.value = '';
         this._email.value = '';
+        this._hideErrors();
+
     }
 
-    showSuccess(){
+    showSuccess(successMessage){
         setTimeout(() => {
             this.cleanForm();
             document.getElementById('icon-loader').classList.remove('active');
-            alert('Created user')
+            alert(successMessage);
+            window.location.replace('/');
         }, 1000);
     }
 
@@ -40,6 +43,18 @@ class FormView {
         document.getElementById('icon-loader').classList.remove('active');
         document.getElementById(inputName).classList.add("invalid");
         document.getElementById('msg-error-' + inputName).classList.add("invalid");
+    }
+
+    isDuplicateCPF() {
+        alert('CPF já cadastrado');
+        document.getElementById('icon-loader').classList.remove('active');
+    }
+
+    _hideErrors() {
+        const invalidElements = document.querySelectorAll('.invalid');
+        [...invalidElements].forEach(element => {
+            element.classList.remove('invalid');
+        });
     }
 
     get cpf() {
