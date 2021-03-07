@@ -58,7 +58,7 @@ body {
 
 .container-table {
   max-width: 1200px;
-  overflow: scroll; }
+  overflow: auto; }
 
 h1 {
   font: 500 1.8rem 'Ubuntu', sans-serif;
@@ -81,6 +81,13 @@ header nav {
         text-decoration: none;
         color: #ffffff; }
 
+.btn-group {
+  display: flex;
+  justify-content: flex-end; }
+  .btn-group .btn-primary {
+    max-width: 200px;
+    text-align: center; }
+
 button {
   cursor: pointer;
   width: 100%;
@@ -91,12 +98,6 @@ button {
   font-size: 1.1rem;
   font-weight: 500;
   margin-top: 2rem; }
-  button.btn-group {
-    display: flex;
-    justify-content: flex-end; }
-    button.btn-group .btn-primary {
-      max-width: 200px;
-      text-align: center; }
   button.btn-primary {
     background: #00c8b3; }
     button.btn-primary.loader, button.btn-primary:hover {
@@ -106,15 +107,15 @@ button {
       color: #dddcdc; }
   button.btn-danger {
     background: #eb4a46;
-    font-size: 0.7rem;
-    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.3rem 1rem;
     width: auto;
     display: inline-block;
     margin-top: 0; }
   button.btn-edit {
     background: #333333;
-    font-size: 0.7rem;
-    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    padding: 0.3rem 01rem;
     width: auto;
     display: inline-block;
     margin-right: 1rem;
@@ -168,6 +169,8 @@ table {
     font-weight: 500; }
     table thead th {
       border-bottom: solid 1px #333333; }
+      table thead th:last-child {
+        min-width: 180px; }
   table > tbody {
     text-align: center;
     font-size: 0.8rem; }
