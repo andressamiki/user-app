@@ -1,5 +1,5 @@
 import UserController from '../controllers/UserController.js';
-
+import Mask from '../utils/Mask.js';
 
 class UserListView {
 
@@ -14,8 +14,8 @@ class UserListView {
         for (let index = 0; index < users.length; index++) {
             let newRow = this._tbodyRef.insertRow();
             newRow.insertCell().appendChild(document.createTextNode(users[index]['name']));
-            newRow.insertCell().appendChild(document.createTextNode(users[index]['cpf']));
-            newRow.insertCell().appendChild(document.createTextNode(users[index]['phone']));
+            newRow.insertCell().appendChild(document.createTextNode(Mask.maskCpf(users[index]['cpf'])));
+            newRow.insertCell().appendChild(document.createTextNode(Mask.maskPhone(users[index]['phone'])));
             newRow.insertCell().appendChild(document.createTextNode(users[index]['email']));
             let btnDelete = '<button class="btn-danger btn-delete" id="' + users[index]['cpf'] + '">Deletar</button>';
             let btnEdit = '<button class="btn-primary btn-edit" id="' + users[index]['cpf'] + '" >Editar</button>';
@@ -30,7 +30,7 @@ class UserListView {
 
             });
             buttonsEdit[i].addEventListener('click', event => {
-                window.location.replace('index.html' + '?cpf=' + event.target.id);
+                window.location.replace('/' + '?cpf=' + event.target.id);
             });
         }
     }

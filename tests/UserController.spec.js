@@ -23,18 +23,6 @@ describe('UserController', () => {
     it('should create', () => {
         expect(userController).toBeTruthy();
     });
-    /* it('should create user', () => {
-        //spyOn(userList, 'pushUser');
-        //const storage = localStorage.getItem('userItem');
-        const input = {
-            name:  'Andressa',
-            cpf: '647.559.988-32',
-            phone: '(13) 98833-1220',
-            email: 'andressa@gmail.com'
-        };
-        //expect(storage).toString();
-        //expect(userController.createUser(input)).toEqual(input);
-    }); */
     it('should get user list', () => {
         const list = userController.userList();
         list.then(result => expect(result).toEqual(obj));
@@ -52,5 +40,13 @@ describe('UserController', () => {
         const cpf = '64755998832';
         const hasUser = userController.verifyCPF(cpf);
         expect(hasUser).toBeTrue();
+    });
+    it('should delete user', () => {
+        localStorage.setItem('userList', JSON.stringify(obj));
+        localStorage.setItem('requestMade', 1);
+        const cpf = '64755998832';
+        userController.deleteUser(cpf);
+        const hasUser = userController.verifyCPF(cpf);
+        expect(hasUser).toBeFalse();
     });
 });
