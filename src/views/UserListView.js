@@ -25,12 +25,17 @@ class UserListView {
         const buttonsEdit = document.querySelectorAll('.btn-edit');
         for (let i = 0; i < buttonsDelete.length; i++) {
             buttonsDelete[i].addEventListener('click', event => {
-                userController.deleteUser(event.target.id);
-                location.reload();
-
+                const deleteDialog = confirm('Deseja excluir esse usuário?');
+                if (deleteDialog) {
+                    userController.deleteUser(event.target.id);
+                    location.reload();
+                }
             });
             buttonsEdit[i].addEventListener('click', event => {
-                window.location.replace('/' + '?cpf=' + event.target.id);
+                const editDialog = confirm('Deseja editar esse usuário?');
+                if (editDialog) {
+                    window.location.replace('/' + '?cpf=' + event.target.id);
+                }
             });
         }
     }
